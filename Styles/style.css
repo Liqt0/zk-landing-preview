@@ -1,0 +1,643 @@
+.js_tabs {}
+
+html
+{
+	/*background: #000 url("../img/bg_bluehex.gif") fixed;*/
+	background: #000;
+    background-size: cover;
+	color: #ede;
+    font-family: os, sans-serif;
+	font-size: 14.5px;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	z-index:0;
+    letter-spacing: -0.2px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern";
+    font-feature-settings: "kern";
+}
+
+body
+{
+	background: none;
+	width: 100%;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+#fadetoblack
+{
+	background: url("../img/fade.png") repeat-y 50% 0;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper
+{
+	position: relative;
+	padding: 10px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 0;
+	border-bottom: 0;
+	z-index:0;
+}
+
+div#footer
+{
+	position: relative;
+	clear: both;
+}
+
+.floatingheader
+{
+	position:fixed;
+	top:10px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index:100;
+}
+
+.floatingfooter
+{
+	position:fixed;
+	bottom:-10px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index:100;
+}
+
+ul.forumtab
+{
+	list-style-image: url("../img/bullet.png");
+	padding-left: 15px;
+}
+
+hr.pretty
+{
+	background: url("../img/hr_img1.png");
+	width: 80%;
+	height: 1px;
+}
+
+div#simplestyle
+{
+	margin: 10px;
+}
+
+div#busy
+{
+	background: #190c02; /*bgcolor of load.gif*/
+	position: fixed;
+	display: none;
+	top: 40%;
+	left: 40%;
+	right: 40%;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	z-index: 100;
+}
+
+.admin
+{
+	border: 1px dotted red;
+	padding: 3px;
+	margin: 2px;
+}
+
+.test
+{
+	border: 1px solid red;
+}
+
+.border
+{
+	margin: 10px;
+	padding: 5px;
+	border-style: solid;
+	border-radius: 15px;
+	border-image:url("../Styles/dark-hive/images/tech_button.png") 24 fill / 15px stretch;
+	background: #333;
+	box-shadow: 0 0 3px 3px #000;
+	-moz-box-shadow: 0 0 3px 3px #000;
+	-webkit-box-shadow: 0 0 3px 3px #000;
+}
+
+.ie .border
+{
+	padding: 13px;
+	border: 1px solid #38bfec;
+}
+
+/* Download-Button on Homepage */
+.buttonSpan
+{
+	height: 45px;
+	width: 45px;
+	background-image: url("../img/downloadBlue45.png");
+	display: inline-block;
+	vertical-align:middle;
+}
+.textbutton
+{
+	display: inline-block;
+	background: #000 url("../img/download.png") no-repeat center;
+	color: #38bfec;
+	border-radius: 5px;
+	border: 1px solid #2a8eaf;
+	box-shadow: 0 0 2px 2px #38bfec;
+	padding: 0.4em 1em;
+	margin: 4px 1px;
+	cursor: pointer;
+	text-align: center;
+	font-family: os, sans-serif;
+	font-size: medium;
+	vertical-align: middle;
+}
+
+.textbutton:hover
+{
+	color: #fff;
+	box-shadow: 0 0 2px 2px #fff;
+	text-decoration: none;
+}
+
+
+.steamSpan {
+    margin-top: -5px;
+    margin-left: -12px;
+    margin-right: -12px;
+    height: 33px;
+    width: 140px;
+    background-size: cover;
+    background-image: url("../img/steam_logo.png");
+    display: inline-block;
+    vertical-align: middle;
+}
+.downloadbutton
+{
+	position: relative;
+	display: block;
+	background: #000 url("../img/download.png") no-repeat center;
+	color: #38bfec;
+	border-radius: 5px;
+	border: 1px solid #2a8eaf;
+	box-shadow: 0 0 2px 2px #38bfec;
+	padding: 15px 0;
+	margin: 10px;
+	cursor: pointer;
+	text-align: center;
+	font-family: os, sans-serif;
+	font-size: 200%;
+}
+
+.downloadbutton:hover {
+    color: #fff;
+    box-shadow: 0 0 2px 2px #fff;
+}
+
+.downloadbutton:active {
+    color: #cbd3d4;
+    box-shadow: 0 0 2px 2px #cbd3d4;
+}
+
+.downloadbuttonsteam {
+    position: relative;
+    display: block;
+    background: #000 url("../img/download.png") no-repeat center;
+    color: #38bfec;
+    border-radius: 5px;
+    border: 1px solid #2a8eaf;
+    box-shadow: 0 0 2px 2px #38bfec;
+    padding: 15px 0;
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-family: os, sans-serif;
+    font-size: 160%;
+}
+.downloadbuttonsteam:hover {
+    color: #fff;
+    box-shadow: 0 0 2px 2px #fff;
+}
+
+.downloadbuttonsteam:active {
+    color: #cbd3d4;
+    box-shadow: 0 0 2px 2px #cbd3d4;
+}
+
+/* Share */
+#shares 
+{
+	vertical-align:middle;
+}
+
+/* galaxy map
+----------------------------------------------*/
+.sectorgrid
+{
+	position: relative; 
+	border: 1px solid white; 
+	opacity: .15;
+	color: white; 
+	text-align: right; 
+	vertical-align: bottom;
+}
+
+.sectorgrid:hover
+{
+	background: #666;
+}
+
+.sectorgrid:hover > .sectorname
+{
+	display: inline;
+}
+
+.ie .sectorgrid
+{
+	display: none;
+}
+
+
+/* Single Player missions
+----------------------------------------------*/
+.mission
+{
+	display: block;
+	position: relative;
+	background: #111;
+	width:250px; 
+	height:160px;
+	padding: 10px;
+	margin: 10px;
+	border: 2px solid #444;
+	text-align: left;
+}
+
+.mission:hover
+{
+	background: #333;
+	cursor: pointer;
+}
+
+.play
+{
+	font-family: sm;
+	font-size: 150%;
+	display: none;
+	position: absolute;
+	top: 150px;
+	left: 0px;
+	z-index: 100;
+}
+
+.mission:hover > .play
+{
+	display: block;
+}
+
+.icon16
+{
+	width:16px;
+	height:16px;
+	padding:0;
+	margin:0px 2px;
+	vertical-align:middle;
+}
+
+.icon32 
+{
+	width:32px;
+	height: 32px; 
+}
+
+.icon20
+{
+	width:20px;
+	height: 20px; 
+}
+
+
+.flag
+{
+	padding:0;
+	margin:0;
+	vertical-align:middle;
+}
+
+.avatar 
+{
+	padding:0; 
+	margin:0;
+}
+
+/* Battle detail
+-----------------------------------------------------------*/
+
+.battle_winner
+{
+	border: 1px solid #00FF21;
+	padding: 5px;
+	margin: 2px;
+	border-radius: 5px;
+	box-shadow: 0 0 3px 3px #000;
+	-moz-box-shadow: 0 0 3px 3px #000;
+	-webkit-box-shadow: 0 0 3px 3px #000;
+}
+
+.battle_loser
+{
+	border: 1px solid #FF0000;
+	padding: 5px;
+	margin: 2px;
+	border-radius: 5px;
+	box-shadow: 0 0 3px 3px #000;
+	-moz-box-shadow: 0 0 3px 3px #000;
+	-webkit-box-shadow: 0 0 3px 3px #000;
+}
+
+.battle_spec
+{
+	border: 1px solid #333;
+	margin: 2px;
+	border-radius: 5px;
+}
+
+/* Map detail
+-----------------------------------------------------------*/
+.rating_all
+{
+	display: block;
+	width: 70px;
+	height: 14px;
+	padding: 0;
+}
+
+.rating_yours
+{
+	display: none;
+	width: 70px;
+	height: 14px;
+	padding: 0;
+}
+
+.ratings:hover > .rating_yours
+{
+	display: block;
+}
+
+.ratings:hover > .rating_all
+{
+	display: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+	color: #ff0000;
+}
+
+.field-validation-valid
+{
+	display: none;
+}
+
+.input-validation-error
+{
+	border: 1px solid #ff0000;
+	background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+	font-weight: bold;
+	color: #ff0000;
+}
+
+.validation-summary-valid
+{
+	display: none;
+}
+
+/* google wiki */
+.section_anchor 
+{
+	display:none;
+	color: Black;
+}
+
+/* Styles for unitguide
+-----------------------------------------------------------*/
+
+.infoCell
+{
+	background-color:#204040;
+	border-style: solid;
+	border-image: url("../Styles/dark-hive/images/tech_button.png") 24 24 24 24 fill / 15px 15px 15px 15px;
+	border-radius: 10px;
+	border-color:transparent;
+	max-width: 700px;
+	overflow: hidden;
+	padding:10px;
+	white-space:normal;
+}
+.unitCell{
+	margin-left: 30px; 
+}
+.unitname {
+	font-weight:bold;
+}
+.unitdesc {
+	font-style:oblique;
+}
+.helptext {
+	font-size:small;
+}
+
+.buildpic {
+	border: 1px solid white;
+}
+.statsnumval {
+	font-weight:bold;
+	color:DeepSkyBlue;
+	font-family: monospace;
+	white-space:nowrap;
+}
+.statsfield {
+	font-size:small;
+}
+.forum {
+    width: 980px;
+    margin: 0 auto;
+    background-color: #333;
+    padding: 10px;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-flow: row;
+}
+
+.post {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: min-width 1fr;
+    grid-gap: 10px 2px;
+    background-color: #000;
+}
+
+.user {
+    padding: 10px;
+    width: 228px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 10px;
+    background-color: #204040;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: transparent;
+    border-image: url("../Styles/dark-hive/images/tech_button.png") 24 24 24 24 fill / 15px 15px 15px 15px;
+}
+
+.entry {
+    padding: 10px;
+    width: 680px;
+    background-color: #204040;
+    border-style: solid;
+    border-image: url("../Styles/dark-hive/images/tech_button.png") 24 24 24 24 fill / 15px 15px 15px 15px;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+.entry:target {
+    background-color: #077;
+}
+
+.entry__text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.entry__rating {
+    text-align: right;
+}
+
+.forumRow 
+{
+	width:100%;
+}
+
+.forumPostHead 
+{
+	background-color:#204040;
+	width:222px;
+	border-style: solid;
+	border-radius:10px;
+	border-color:transparent;
+	border-image: url("../Styles/dark-hive/images/tech_button.png") 24 24 24 24 fill / 15px 15px 15px 15px;
+	padding:10px;
+}
+
+.forumPostText
+{
+	background-color:#204040;
+	border-style: solid;
+	border-image: url("../Styles/dark-hive/images/tech_button.png") 24 24 24 24 fill / 15px 15px 15px 15px;
+	border-radius: 10px;
+	border-color:transparent;
+	max-width: 700px;
+	overflow: hidden;
+	padding:10px;
+	white-space:normal;
+}
+.forumPostText:target {
+	background-color: #077;
+}
+
+.entry__text img {
+    max-width: 100%;
+}
+
+.forumPostText img
+{
+	max-width:100%;
+}
+
+.journal img {
+	max-width:100%;
+}
+
+/* planetwars */
+.planetname
+{
+	text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.pwlabel 
+{
+	font-size:11px; 
+	font-weight:bold; 
+	margin: 0; 
+	padding:0; 
+	position: absolute;
+}
+
+.wikitable {
+	border-spacing: 0;
+	border: 1px solid #ccc;
+}
+
+.wikitable td {
+	border: 1px solid #ccc; padding: 5px;
+}
+
+
+.grid {
+	margin: 10px;
+	padding: 5px;
+	border-style: solid;
+	border-radius: 15px;
+	border-image: url("../Styles/dark-hive/images/tech_button.png") 24 fill / 15px stretch;
+	background: #333;
+	box-shadow: 0 0 3px 3px #000;
+	-moz-box-shadow: 0 0 3px 3px #000;
+	-webkit-box-shadow: 0 0 3px 3px #000;
+	margin: 5px;
+}
+
+.grid_title {
+	text-align: center;
+}
+
+.grid_table {
+	width: 100%;
+}
+
+.grid_pager {
+	margin: 4px;
+}
+
+.grid .row_selected {
+	background-color: #0000cd;
+}
+
+.video-container {
+    max-width: 100%;
+}
