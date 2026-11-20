@@ -1,4 +1,4 @@
-/* Landing pages for logged-out visitors (home and download). Loaded only there; every class is prefixed lp-. */
+﻿/* Landing pages for logged-out visitors (home and download). Loaded only there; every class is prefixed lp-. */
 
 html {
     background: #000;
@@ -132,7 +132,7 @@ html {
     padding: 110px 24px 80px;
     overflow: hidden;
     text-align: center;
-    background: #000 url("../img/landing/wublord.jpg") no-repeat 50% 60%;
+    background: #000 url("../img/landing/hero/hero-1.jpg") no-repeat 50% 50%;
     background-size: cover;
 }
 
@@ -141,8 +141,13 @@ html {
     z-index: 1;
 }
 
-/* Slideshow: 20 seconds per picture. The first picture is also the hero background, so nothing flashes on load. */
+/* Hero slideshow, pure CSS. Pictures live in /img/landing/hero/ (hero-1.jpg ...), 10 seconds each.
+   The keyframes assume 6 pictures (each is visible for 100/6 = 16.67% of the loop plus its fades).
+   To change the count: change --n here and the percentages in the keyframes (100 / n), and add <img> tags in the view.
+   The first picture is also the hero background, so nothing flashes on load. */
 .lp-hero > .lp-slides {
+    --n: 6;
+    --each: 10s;
     position: absolute;
     top: 0;
     right: 0;
@@ -151,43 +156,32 @@ html {
     z-index: 0;
 }
 
-.lp-slides span {
+.lp-slides img {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     opacity: 0;
-    background: no-repeat 50% 50%;
-    background-size: cover;
-    animation: lp-slide 80s linear infinite;
-}
-
-.lp-slides span:nth-child(1) {
-    background-image: url("../img/landing/wublord.jpg");
-    background-position: 50% 60%;
-}
-
-.lp-slides span:nth-child(2) {
-    background-image: url("../img/screenshots/screen00132.jpg");
-    animation-delay: 20s;
-}
-
-.lp-slides span:nth-child(3) {
-    background-image: url("../img/screenshots/screen00037.jpg");
-    animation-delay: 40s;
-}
-
-.lp-slides span:nth-child(4) {
-    background-image: url("../img/screenshots/screen00185.jpg");
-    animation-delay: 60s;
+    animation: lp-slide calc(var(--n) * var(--each)) linear infinite;
+    animation-delay: calc(var(--i) * var(--each));
 }
 
 @keyframes lp-slide {
     0% { opacity: 0; }
-    3.75% { opacity: 1; }
-    25% { opacity: 1; }
-    28.75% { opacity: 0; }
+    3% { opacity: 1; }
+    16.67% { opacity: 1; }
+    19.67% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Reduced motion: the pictures still change, but with a much slower, gentler crossfade. */
+@keyframes lp-slide-slow {
+    0% { opacity: 0; }
+    8% { opacity: 1; }
+    16.67% { opacity: 1; }
+    24.67% { opacity: 0; }
     100% { opacity: 0; }
 }
 
@@ -204,8 +198,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .lp-slides span {
-        animation: none;
+    .lp-slides img {
+        animation-name: lp-slide-slow;
     }
 }
 
@@ -323,7 +317,7 @@ a.lp-btn:active {
 
 .lp-dl-title img {
     width: auto;
-    height: 120px;
+    height: clamp(60px, 11vh, 110px);
 }
 
 .lp-hero-small .lp-lead {
@@ -401,9 +395,15 @@ a.lp-btn:active {
     font-size: 125%;
 }
 
-/* .steamSpan is the site's white Steam logo; undo its negative margins here */
-.lp-dl-card .lp-steam {
+/* .steamSpan is the site's white Steam logo; undo its negative margins here.
+   "contain" instead of the site's "cover" so the edges (and the trademark sign) are not cropped. */
+.lp-btn .lp-steam {
+    width: 170px;
+    height: 44px;
     margin: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .lp-dl-help {
@@ -411,45 +411,6 @@ a.lp-btn:active {
     text-align: center;
     font-size: 110%;
     color: #cde;
-}
-
-.lp-gallery {
-    overflow: hidden;
-    padding: 0 0 70px;
-}
-
-.lp-gallery-track {
-    display: flex;
-    width: max-content;
-    animation: lp-drift 120s linear infinite;
-}
-
-.lp-gallery:hover .lp-gallery-track {
-    animation-play-state: paused;
-}
-
-.lp-gallery img {
-    display: block;
-    width: auto;
-    height: 230px;
-    margin-right: 14px;
-    border: 1px solid #2a8eaf;
-    border-radius: 6px;
-}
-
-@keyframes lp-drift {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .lp-gallery {
-        overflow-x: auto;
-    }
-
-    .lp-gallery-track {
-        animation: none;
-    }
 }
 
 .lp-band {
@@ -522,6 +483,8 @@ a.lp-btn:active {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 800 / 350;
+    object-fit: cover;
     border: 1px solid #2a8eaf;
     border-radius: 6px;
     box-shadow: 0 0 3px 3px #000;
@@ -681,5 +644,260 @@ a.lp-btn:active {
     .lp-footer-cols {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+}
+
+/* Download page top. The background is static (the feature strip is the only moving part). */
+.lp-dl-top {
+    justify-content: flex-start;
+    min-height: min(100vh, 1000px);
+    padding: 72px 0 32px;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 60%, #000 100%),
+        #000 url("../img/landing/wublord.jpg") no-repeat 50% 60%;
+    background-size: cover;
+}
+
+.lp-dl-top .lp-dl-title {
+    margin: 0;
+}
+
+.lp-dl-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: clamp(14px, 3vh, 28px);
+    padding: 0 16px;
+}
+
+.lp-dl-mid {
+    --loop: 45s;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Feature strip, pure CSS. One long track slides left one picture at a time and loops forever.
+   The track is 11 slots: a copy of the last picture, the 9 pictures, then a copy of the first. It starts with picture 1 in
+   the middle, picture 9 on its left and picture 2 on its right, so it begins symmetrical. After the 9th move the copy of
+   picture 1 is in the middle, which looks identical to the start, so the loop jumps back without anyone noticing.
+   One step is 1/9 of the loop (5s): about 4.1s of rest, then a 0.9s move with an ease (fast, slow into the middle, fast out).
+   The keyframes are written for 9 pictures. For a different count the percentages must change: a step is 100 / n percent,
+   and a slot is 100 / (n + 2) percent of the track. */
+.lp-strip {
+    /* As tall as the screen allows while the Steam and Discord buttons stay in view: the screen height minus the logo,
+       caption, buttons and padding (about 330px plus 18vh). */
+    --height: clamp(150px, calc(82vh - 330px), 720px);
+    --w: calc(var(--height) * 16 / 9);
+    width: 100%;
+    overflow: hidden;
+}
+
+.lp-track {
+    display: flex;
+    width: max-content;
+    margin-left: calc(50% - (var(--w) + 14px) * 1.5);
+    animation: lp-move var(--loop) infinite;
+}
+
+.lp-track figure {
+    flex: none;
+    width: var(--w);
+    margin: 0 7px;
+    opacity: 0.45;
+    animation: lp-lit var(--loop) linear infinite;
+    animation-delay: calc(var(--k) * var(--loop) / 9 - var(--loop) * 0.02);
+}
+
+.lp-track figure:first-child {
+    animation: none;
+}
+
+.lp-track figure:last-child {
+    animation-name: lp-lit-last;
+    animation-delay: 0s;
+}
+
+.lp-track img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #2a8eaf;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 3px #000;
+}
+
+/* The captions are shown in .lp-caps below the strip, so these are only kept for screen readers. */
+.lp-track figcaption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.lp-caps {
+    position: relative;
+    height: 1.4em;
+    margin: clamp(10px, 2vh, 20px) 0 0;
+    font-family: 'Xolonium', os, sans-serif;
+    font-size: clamp(18px, 3.6vh, 34px);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 6px #000;
+}
+
+.lp-caps span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    animation: lp-cap var(--loop) linear infinite;
+    animation-delay: calc(var(--k) * var(--loop) / 9);
+}
+
+@keyframes lp-move {
+    0%, 9.11% { transform: translateX(0%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    11.11%, 20.22% { transform: translateX(-9.0909%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    22.22%, 31.33% { transform: translateX(-18.1818%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    33.33%, 42.44% { transform: translateX(-27.2727%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    44.44%, 53.56% { transform: translateX(-36.3636%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    55.56%, 64.67% { transform: translateX(-45.4545%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    66.67%, 75.78% { transform: translateX(-54.5455%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    77.78%, 86.89% { transform: translateX(-63.6364%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    88.89%, 98% { transform: translateX(-72.7273%); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+    100% { transform: translateX(-81.8182%); }
+}
+
+/* The picture in the middle is bright, the others are dimmed. */
+@keyframes lp-lit {
+    0% { opacity: 0.45; }
+    2%, 9.11% { opacity: 1; }
+    11.11%, 100% { opacity: 0.45; }
+}
+
+@keyframes lp-lit-last {
+    0%, 97% { opacity: 0.45; }
+    100% { opacity: 1; }
+}
+
+/* A caption fades in once its picture has arrived and fades out before the picture leaves. */
+@keyframes lp-cap {
+    0% { opacity: 0; }
+    0.32%, 8.78% { opacity: 1; }
+    9.1%, 100% { opacity: 0; }
+}
+
+/* Reduced motion: it still plays, but twice as slowly, so each move is a gentle glide (1.8s instead of 0.9s). */
+@media (prefers-reduced-motion: reduce) {
+    .lp-dl-mid {
+        --loop: 90s;
+    }
+}
+
+a.lp-btn-big,
+a.lp-btn-big:visited {
+    min-width: 420px;
+    min-height: 92px;
+    font-size: 220%;
+}
+
+.lp-social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: clamp(12px, 2.4vh, 22px);
+}
+
+a.lp-discord,
+a.lp-discord:visited {
+    min-width: 0;
+    min-height: 56px;
+    padding: 8px 26px;
+    font-size: 125%;
+}
+
+.lp-discord-logo {
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    -webkit-mask: url("../img/landing/discord.svg") center / contain no-repeat;
+    mask: url("../img/landing/discord.svg") center / contain no-repeat;
+}
+
+a.lp-github,
+a.lp-github:visited {
+    display: block;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.75) url("../img/landing/github.svg") no-repeat 50% 50%;
+    background-size: 28px;
+    border: 1px solid #2a8eaf;
+    border-radius: 5px;
+}
+
+a.lp-github:hover {
+    border-color: #fff;
+}
+
+.lp-vital {
+    max-width: 760px;
+    margin: clamp(12px, 2.4vh, 24px) 24px 0;
+    font-size: 115%;
+    line-height: 1.5;
+    color: #cde;
+    text-shadow: 0 1px 3px #000;
+}
+
+.lp-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.lp-dl-other {
+    margin-bottom: 0;
+    font-size: 150%;
+    text-align: center;
+    color: #cde;
+}
+
+.lp-dl-two {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 760px;
+    margin: 16px auto 0;
+}
+
+@media (max-width: 820px) {
+    .lp-dl-top {
+        padding: 40px 0 24px;
+    }
+
+    a.lp-btn-big,
+    a.lp-btn-big:visited {
+        width: 100%;
+        min-width: 0;
+        min-height: 76px;
+        font-size: 170%;
+    }
+
+    .lp-strip {
+        --w: 76vw;
+    }
+
+    .lp-dl-two {
+        grid-template-columns: 1fr;
     }
 }
